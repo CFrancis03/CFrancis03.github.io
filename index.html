@@ -1,48 +1,172 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>CFrancis03</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      margin: 0;
-      padding: 0;
-      text-align: center;
-      color: #333;
-    }
-    header a {
-      color: #fff;
-      text-decoration: none;
-    }
-    .content {
-      max-width: 800px;
-      margin: 20px auto;
-      line-height: 1.6;
-      text-align: left;
-    }
-    .achievements ul {
-      list-style-type: disc;
-      padding-left: 20px;
-    }
-  </style>
-</head>
-<body>
-  <div class="content">
-    <h1>Hi 👋, I'm Colton Francis</h1>
-    <p>I'm a software engineer from Illinois, currently learning Rust.</p>
-    <h2>Projects:</h2>
-    <div class="achievements">
-      <ul>
-        <li><a href="https://github.com/CFrancis03/ceditr">ceditr</a>: A lightweight, terminal-based text editor written in C, inspired by Kilo. Features syntax highlighting for C/C++ files and efficient file editing.</li>
-        <li><a href="https://github.com/CFrancis03/Thesh">Thesh</a>: A basic Unix shell written in C for educational purposes, demonstrating basic shell functionality.</li>
-        <li><a href="https://github.com/CFrancis03/clox">clox</a>: A C++ implementation of the Lox interpreter from Crafting Interpreters, currently implementing the tokenizing phase.</li>
-      </ul>
+  <section id="about">
+    <div class="section-head reveal">
+      <span class="section-num">01 · About</span>
+      <h2>Who I am</h2>
     </div>
-    <p><strong>Thinking about:</strong></p>
-    <p><strong>Programming, specifically C, C++, Rust, interpreter development, text editing, and shell scripting.</strong></p>
-    <p>Find me on <a href="https://github.com/CFrancis03">GitHub</a></p>
+    <p class="about-text reveal">
+      I'm a dedicated Computer Science student seeking an entry-level software engineering or internship role.
+      I like understanding systems from the inside out — <strong>how a parser turns text into structure, how a shell
+      talks to the kernel, how a terminal renders a byte to the screen</strong> — and I learn best by building those
+      things myself instead of just using them. My projects reflect that: an interpreter, a shell, and a text editor,
+      all written from scratch in C/C++. I'm continuing to grow my expertise in low-level systems while finishing my
+      degree at Northern Illinois University.
+    </p>
+  </section>
+
+  <section id="projects">
+    <div class="section-head reveal">
+      <span class="section-num">02 · Projects</span>
+      <h2>Things I've built</h2>
+    </div>
+    <div class="projects-grid">
+
+      <div class="card reveal">
+        <div class="card-top">
+          <div class="card-icon">λ</div>
+          <a class="card-link" href="https://github.com/CFrancis03/clox" target="_blank" rel="noopener" aria-label="clox on GitHub">↗</a>
+        </div>
+        <h3>clox</h3>
+        <div class="card-sub">Lox Interpreter</div>
+        <p>A full-featured tree-walk interpreter in C/C++ with a hand-written scanner and recursive descent parser. Handles dynamic typing, lexical scoping, and environment nesting for variable resolution.</p>
+        <div class="tags">
+          <span class="tag">C++</span>
+          <span class="tag">Interpreters</span>
+          <span class="tag">Parsing</span>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <div class="card-icon">$</div>
+          <a class="card-link" href="https://github.com/CFrancis03/Thesh" target="_blank" rel="noopener" aria-label="Thesh on GitHub">↗</a>
+        </div>
+        <h3>Thesh</h3>
+        <div class="card-sub">Basic Unix Shell</div>
+        <p>A custom Unix shell built on fork, execvp, and wait. Supports I/O redirection, multi-stage piping, and asynchronous background process management.</p>
+        <div class="tags">
+          <span class="tag">C</span>
+          <span class="tag">Systems</span>
+          <span class="tag">Unix</span>
+        </div>
+      </div>
+
+      <div class="card reveal">
+        <div class="card-top">
+          <div class="card-icon">▤</div>
+          <a class="card-link" href="https://github.com/CFrancis03/ceditr" target="_blank" rel="noopener" aria-label="ceditr on GitHub">↗</a>
+        </div>
+        <h3>ceditr</h3>
+        <div class="card-sub">Terminal Text Editor</div>
+        <p>A lightweight CLI text editor in C, inspired by Kilo. Implements raw terminal mode, efficient buffer management, and ANSI escape sequences for rendering and cursor navigation.</p>
+        <div class="tags">
+          <span class="tag">C</span>
+          <span class="tag">Terminal I/O</span>
+          <span class="tag">CLI</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <section id="education">
+    <div class="section-head reveal">
+      <span class="section-num">03 · Education</span>
+      <h2>Academic background</h2>
+    </div>
+    <div class="timeline reveal">
+      <div class="tl-item">
+        <span class="tl-date">Spring 2027 (expected)</span>
+        <h3>BS in Computer Science</h3>
+        <div class="tl-school">Northern Illinois University · DeKalb, IL</div>
+        <ul>
+          <li>CSCI 360 — Assembler Language Programming</li>
+          <li>CSCI 466 — Databases</li>
+          <li>CSCI 467 — Introduction to Software Engineering</li>
+        </ul>
+      </div>
+      <div class="tl-item">
+        <span class="tl-date">Summer 2024</span>
+        <h3>Associate in Arts, Computer Science</h3>
+        <div class="tl-school">Sauk Valley Community College</div>
+        <ul>
+          <li>C++ Programming I &amp; II</li>
+          <li>Calculus &amp; Analytic Geometry I</li>
+          <li>General Physics I · Elementary Statistics · Principles of Economics</li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <section id="skills">
+    <div class="section-head reveal">
+      <span class="section-num">04 · Skills</span>
+      <h2>Tools &amp; technologies</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-group reveal">
+        <h4>Languages</h4>
+        <div class="pill-row">
+          <span class="pill">C</span>
+          <span class="pill">C++</span>
+          <span class="pill">Python 3</span>
+          <span class="pill">Assembly (z/OS)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Systems</h4>
+        <div class="pill-row">
+          <span class="pill">Linux (Nix/NixOS)</span>
+          <span class="pill">IBM Mainframe (z/OS)</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Software Engineering</h4>
+        <div class="pill-row">
+          <span class="pill">Git / VCS</span>
+          <span class="pill">Project Management</span>
+        </div>
+      </div>
+      <div class="skill-group reveal">
+        <h4>Mathematics</h4>
+        <div class="pill-row">
+          <span class="pill">Calculus</span>
+          <span class="pill">Analytic Geometry</span>
+          <span class="pill">Statistics</span>
+        </div>
+      </div>
+    </div>
+  </section>
+</div>
+
+<section id="contact" style="border-top: 1px solid var(--border);">
+  <div class="wrap">
+    <div class="contact-box reveal">
+      <h2>Let's build something.</h2>
+      <p>I'm looking for entry-level software engineering or internship opportunities. If you're hiring or just want to talk systems programming, reach out.</p>
+      <div class="contact-links">
+        <a class="btn btn-primary" href="mailto:cfrancis85111@gmail.com">✉️ cfrancis85111@gmail.com</a>
+        <a class="btn btn-secondary" href="https://github.com/CFrancis03" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
   </div>
+</section>
+
+<footer>
+  <p>Built by Colton Francis · <a href="https://github.com/CFrancis03/CFrancis03.github.io" target="_blank" rel="noopener">source on GitHub</a></p>
+</footer>
+
+<script>
+  const revealEls = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if (entry.isIntersecting) {
+        entry.target.classList.add('in');
+        io.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  revealEls.forEach(el => io.observe(el));
+</script>
+
 </body>
 </html>
