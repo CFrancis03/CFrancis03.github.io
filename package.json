@@ -1,0 +1,16 @@
+{
+  "name": "cfrancis03.github.io",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Personal portfolio site for Colton Francis — static HTML/CSS/TypeScript for GitHub Pages.",
+  "scripts": {
+    "build": "tsc",
+    "watch": "tsc --watch",
+    "typecheck": "tsc --noEmit",
+    "serve": "python3 -m http.server 8080",
+    "dev": "npm run build && npm run serve"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.2"
+  }
+}
