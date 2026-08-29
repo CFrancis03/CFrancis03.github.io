@@ -1,0 +1,5 @@
+# https://coltonfrancis.dev/
+User-agent: *
+Allow: /
+
+Sitemap: https://coltonfrancis.dev/sitemap.xml
