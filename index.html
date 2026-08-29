@@ -1,410 +1,343 @@
 <!DOCTYPE html>
-<html lang="en" data-theme="dark">
+<html lang="en">
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="color-scheme" content="dark light">
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="dark light" />
 
-<title>Colton Francis — Entry-Level Software Engineer</title>
-<meta name="description" content="Colton Francis — Computer Science student at Northern Illinois University building interpreters, shells, and terminal editors from scratch in C and C++.">
-<meta name="author" content="Colton Francis">
+<title>Colton Francis · Software Engineer</title>
+<meta name="description" content="Colton Francis – Entry-Level Software Engineer, interested in ML/AI." />
+<meta name="author" content="Colton Francis" />
 
-<!-- Open Graph / social preview.
-     PLACEHOLDER: no social preview image was supplied. Add assets/og-image.png
-     (1200x630) and uncomment the og:image tags below when one exists. -->
-<meta property="og:type" content="website">
-<meta property="og:title" content="Colton Francis — Entry-Level Software Engineer">
-<meta property="og:description" content="Computer Science student at Northern Illinois University building interpreters, shells, and terminal editors from scratch in C and C++.">
-<meta property="og:url" content="https://cfrancis03.github.io/">
-<!-- <meta property="og:image" content="https://cfrancis03.github.io/assets/og-image.png"> -->
-<meta name="twitter:card" content="summary_large_image">
+<meta property="og:type" content="website" />
+<meta property="og:title" content="Colton Francis · Software Engineer" />
+<meta property="og:description" content="Entry-Level Software Engineer and Computer Science student at Northern Illinois University, interested in ML/AI." />
+<meta property="og:url" content="https://cfrancis03.github.io/" />
+<!-- PLACEHOLDER: no social preview image yet. Add assets/og-image.png (1200x630)
+     and uncomment the tag below so shared links render a card instead of a blank box. -->
+<!-- <meta property="og:image" content="https://cfrancis03.github.io/assets/og-image.png" /> -->
+<meta name="twitter:card" content="summary_large_image" />
 
-<link rel="canonical" href="https://cfrancis03.github.io/">
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d0c0f'/><text y='.9em' x='50%25' text-anchor='middle' font-size='58' font-family='monospace' font-weight='700' fill='%23ff7a45'>CF</text></svg>">
+<link rel="canonical" href="https://cfrancis03.github.io/" />
+<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d1117'/><text y='.9em' x='50%25' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='800' fill='%2358a6ff'>CF</text></svg>" />
 
-<!-- Theme bootstrap: runs before first paint so the correct theme is applied
-     with no flash of the wrong colours. Mirrors the logic in src/main.ts. -->
+<!-- Applies the saved theme before first paint so there's no flash of the wrong
+     colours, and marks that JS is running (the scroll-reveal styles key off `.js`,
+     so the page stays fully readable if this script never executes). -->
 <script>
   (function () {
     try {
-      var stored = localStorage.getItem('cf-theme');
+      var stored = localStorage.getItem('theme-preference');
       var theme = (stored === 'light' || stored === 'dark')
         ? stored
         : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
-      document.documentElement.setAttribute('data-theme', theme);
-    } catch (e) {
-      document.documentElement.setAttribute('data-theme', 'dark');
-    }
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) { /* storage blocked — fall through to the dark default */ }
     document.documentElement.classList.add('js');
   })();
 </script>
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
-<link rel="stylesheet" href="css/styles.css">
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+<link rel="stylesheet" href="css/styles.css" />
 </head>
-
 <body>
+
 <a class="skip-link" href="#main">Skip to main content</a>
 
-<div class="scroll-progress" aria-hidden="true"><span data-progress-bar></span></div>
+<!-- ===== NAVIGATION ===== -->
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="#hero" class="nav-logo">Colton Francis</a>
 
-<header class="nav" data-nav>
-  <div class="shell nav__inner">
-    <a class="brand" href="#top" aria-label="Colton Francis — back to top">
-      <span class="brand__mark" aria-hidden="true">CF</span>
-      <span class="brand__text">Colton&nbsp;Francis</span>
-    </a>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#about">About</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
 
-    <nav class="nav__links" id="primary-nav" aria-label="Section navigation" data-nav-menu>
-      <a href="#about">About</a>
-      <a href="#projects">Projects</a>
-      <a href="#education">Education</a>
-      <a href="#skills">Skills</a>
-      <a href="#contact">Contact</a>
-    </nav>
-
-    <div class="nav__actions">
-      <button class="icon-btn" type="button" data-theme-toggle
-              aria-label="Switch to light theme" title="Toggle colour theme">
-        <svg class="icon icon--sun" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <circle cx="12" cy="12" r="4.2"/>
-          <path d="M12 2.4v2.6M12 19v2.6M4.2 12H1.6M22.4 12h-2.6M6.1 6.1 4.3 4.3M19.7 19.7l-1.8-1.8M17.9 6.1l1.8-1.8M4.3 19.7l1.8-1.8"/>
-        </svg>
-        <svg class="icon icon--moon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
-          <path d="M20.2 14.6A8.4 8.4 0 0 1 9.4 3.8a8.4 8.4 0 1 0 10.8 10.8Z"/>
-        </svg>
+    <div class="nav-actions">
+      <button class="theme-toggle" id="themeToggle" type="button" aria-label="Switch to light theme">
+        <span class="theme-icon" id="themeIcon" aria-hidden="true">🌙</span>
       </button>
-
-      <button class="icon-btn nav__burger" type="button" data-nav-toggle
-              aria-label="Open navigation menu" aria-expanded="false" aria-controls="primary-nav">
-        <span class="burger" aria-hidden="true"><i></i><i></i><i></i></span>
+      <button class="nav-toggle" id="navToggle" type="button"
+              aria-label="Open navigation menu" aria-expanded="false" aria-controls="navLinks">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line"></span>
       </button>
     </div>
-  </div>
+  </nav>
 </header>
 
 <main id="main">
 
-  <!-- ============================== HERO ============================== -->
-  <section class="hero" id="top">
-    <div class="hero__aura" aria-hidden="true"></div>
-    <div class="hero__grid" aria-hidden="true"></div>
-
-    <div class="shell hero__inner">
-      <p class="eyebrow reveal">
-        <span class="dot" aria-hidden="true"></span>
-        Seeking entry-level software engineering &amp; internship roles
-      </p>
-
-      <h1 class="hero__title reveal" data-reveal-delay="1">
-        Colton <span class="grad">Francis</span>
-      </h1>
-
-      <p class="hero__role reveal" data-reveal-delay="2">Entry-Level Software Engineer</p>
-
-      <p class="hero__lede reveal" data-reveal-delay="3">
-        Computer Science student at Northern Illinois University. I build low-level systems from
-        scratch — a Lox interpreter, a Unix shell, and a terminal text editor — to understand how
-        software really works underneath the abstractions.
-      </p>
-
-      <div class="hero__cta reveal" data-reveal-delay="4">
-        <a class="btn btn--primary" href="#projects">
-          View projects
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M5 12h13M12.5 5.5 19 12l-6.5 6.5"/></svg>
-        </a>
-        <a class="btn btn--ghost" href="mailto:cfrancis85111@gmail.com">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="4.8" width="18.4" height="14.4" rx="2.2"/><path d="m3.4 6.6 8.6 6.2 8.6-6.2"/></svg>
-          Email me
-        </a>
-        <a class="btn btn--ghost" href="https://github.com/cfrancis03" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none"><path d="M12 1.8a10.2 10.2 0 0 0-3.23 19.88c.51.1.7-.22.7-.49l-.01-1.9c-2.84.62-3.44-1.2-3.44-1.2-.47-1.18-1.14-1.5-1.14-1.5-.93-.63.07-.62.07-.62 1.03.07 1.57 1.06 1.57 1.06.91 1.57 2.4 1.12 2.99.86.09-.66.36-1.12.65-1.38-2.27-.26-4.65-1.13-4.65-5.05 0-1.12.4-2.03 1.05-2.74-.1-.26-.45-1.3.1-2.71 0 0 .86-.28 2.82 1.05a9.7 9.7 0 0 1 5.14 0c1.96-1.33 2.82-1.05 2.82-1.05.55 1.41.2 2.45.1 2.71.66.71 1.05 1.62 1.05 2.74 0 3.93-2.39 4.79-4.66 5.04.37.32.7.94.7 1.9l-.01 2.82c0 .27.18.6.7.49A10.2 10.2 0 0 0 12 1.8Z"/></svg>
-          GitHub
-        </a>
-        <!-- Resume PDF as supplied by Colton. Delete this button and
-             assets/resume/ if you'd rather not host the file publicly —
-             note the PDF itself contains a phone number. -->
-        <a class="btn btn--ghost" href="assets/resume/Colton-Francis-Resume.pdf" target="_blank" rel="noopener noreferrer">
-          <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 3.5v11M7.8 10.5 12 14.7l4.2-4.2M4.5 17.5v2a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-2"/></svg>
-          Résumé
-        </a>
-      </div>
-
-      <dl class="hero__facts reveal" data-reveal-delay="5">
-        <div><dt>Focus</dt><dd>Low-level systems &amp; interpreters</dd></div>
-        <div><dt>Core languages</dt><dd>C · C++ · Python 3</dd></div>
-        <div><dt>Graduating</dt><dd>Spring 2027 · NIU</dd></div>
-        <div><dt>Based in</dt><dd>Walnut, IL</dd></div>
-      </dl>
-    </div>
-  </section>
-
-  <!-- ============================== ABOUT ============================== -->
-  <section class="section" id="about">
-    <div class="shell">
-      <header class="section__head reveal">
-        <p class="section__num">01 — About</p>
-        <h2 class="section__title">Understanding systems from the inside out</h2>
-      </header>
-
-      <div class="about">
-        <div class="about__body reveal" data-reveal-delay="1">
-          <p>
-            I'm a dedicated Computer Science student at Northern Illinois University, seeking an
-            entry-level software engineering or internship role upon graduation. My strongest work
-            lives close to the metal: I'm eager to apply solid programming skills in
-            <strong>C, C++, and Python</strong> to a team building real software.
-          </p>
-          <p>
-            I learn by rebuilding the tools I use every day. Rather than take a language runtime,
-            a shell, or an editor on faith, I've written my own — which is how I picked up
-            scanning and parsing, process control with <code>fork</code>/<code>exec</code>, and raw
-            terminal I/O. That habit is also why I run Linux with
-            <strong>Nix/NixOS</strong> and manage my own systems.
-          </p>
-          <p>
-            I'm continuing to grow my expertise in low-level systems, interpreters, and efficient
-            software design, and I'm looking for a team where that curiosity is useful.
-          </p>
-        </div>
-
-        <aside class="about__card reveal" data-reveal-delay="2" aria-label="Quick facts">
-          <h3 class="about__card-title">At a glance</h3>
-          <ul class="about__list">
-            <li><span>Studying</span><strong>BS Computer Science</strong></li>
-            <li><span>University</span><strong>Northern Illinois University</strong></li>
-            <li><span>Expected</span><strong>Spring 2027</strong></li>
-            <li><span>Looking for</span><strong>Entry-level SWE / internship</strong></li>
-            <li><span>Location</span><strong>Walnut, IL</strong></li>
-          </ul>
-        </aside>
-      </div>
-    </div>
-  </section>
-
-  <!-- ============================ PROJECTS ============================ -->
-  <section class="section" id="projects">
-    <div class="shell">
-      <header class="section__head reveal">
-        <p class="section__num">02 — Projects</p>
-        <h2 class="section__title">Things I've built from scratch</h2>
-        <p class="section__lede">
-          Three self-directed systems projects. Each one is a command-line tool, so there's no
-          hosted demo — the source is the demo.
-          <!-- PLACEHOLDER: no live-demo URLs exist for these projects. If one ever
-               ships, add a second `.card__link` alongside the GitHub link. -->
+  <!-- ===== HERO ===== -->
+  <section id="hero" class="section hero-section">
+    <div class="container hero-container">
+      <div class="hero-content">
+        <p class="hero-greeting">Hi, I'm</p>
+        <h1 class="hero-name">Colton Francis</h1>
+        <p class="hero-tagline">Entry-Level Software Engineer</p>
+        <p class="hero-description">
+          Computer Science student at Northern Illinois University, passionate about
+          machine learning, artificial intelligence, and building impactful software.
         </p>
-      </header>
+        <div class="hero-cta">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="mailto:cfrancis85111@gmail.com" class="btn btn-secondary">Email Me</a>
+          <!-- Résumé PDF holds the contact details kept off the page itself. -->
+          <a href="assets/resume/Colton-Francis-Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-secondary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v11M8 10.5l4 4 4-4M4.5 17.5v2a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-2" />
+            </svg>
+            Résumé
+          </a>
+          <a href="https://github.com/cfrancis03" target="_blank" rel="noopener noreferrer" class="btn btn-ghost">
+            <svg width="20" height="20" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+              <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+            </svg>
+            <span class="btn-label">GitHub</span>
+          </a>
+        </div>
+      </div>
 
-      <div class="cards">
+      <div class="hero-visual" aria-hidden="true">
+        <div class="hero-code-block">
+          <span class="code-line"><span class="code-keyword">class</span> <span class="code-type">SoftwareEngineer</span> {</span>
+          <span class="code-line">  <span class="code-keyword">constructor</span>() {</span>
+          <span class="code-line">    <span class="code-this">this</span>.<span class="code-prop">name</span> = <span class="code-string">"Colton Francis"</span>;</span>
+          <span class="code-line">    <span class="code-this">this</span>.<span class="code-prop">focus</span> = <span class="code-string">"ML / AI"</span>;</span>
+          <span class="code-line">  }</span>
+          <span class="code-line">}</span>
+        </div>
+      </div>
+    </div>
 
-        <article class="card reveal" data-tilt data-reveal-delay="1">
-          <div class="card__glow" aria-hidden="true"></div>
-          <div class="card__top">
-            <span class="card__lang" aria-label="Written in C++">C++</span>
-            <a class="card__link" href="https://github.com/cfrancis03/clox"
-               target="_blank" rel="noopener noreferrer" aria-label="Clox source on GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
-            </a>
-          </div>
-          <h3 class="card__title">Clox</h3>
-          <p class="card__sub">Lox Interpreter</p>
-          <p class="card__desc">
-            A complete tree-walk interpreter for the Lox language, following <em>Crafting
-            Interpreters</em>. Handles scanning, parsing, AST evaluation, environments, and the
-            runtime end to end.
+    <div class="hero-scroll-indicator" aria-hidden="true">
+      <span class="scroll-arrow">↓</span>
+    </div>
+  </section>
+
+  <!-- ===== ABOUT ===== -->
+  <section id="about" class="section about-section">
+    <div class="container">
+      <h2 class="section-title">About</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>
+            I'm a dedicated Computer Science student at <strong>Northern Illinois University</strong>,
+            expected to graduate in <strong>Spring 2027</strong>. I'm actively seeking an
+            <strong>entry-level software engineering</strong> role or internship where I can
+            apply my strong programming skills in <strong>C, C++, and Python</strong>.
           </p>
-          <ul class="tags">
-            <li class="tag">C++</li>
-            <li class="tag">Interpreters</li>
-            <li class="tag">Parsing</li>
-            <li class="tag">AST evaluation</li>
-          </ul>
+          <p>
+            I'm excited to apply my programming foundation to machine learning and AI,
+            and I'm actively learning and building projects in this space. I enjoy solving
+            complex problems and creating intelligent systems that make a difference.
+          </p>
+        </div>
+        <div class="about-highlights">
+          <div class="highlight-item">
+            <span class="highlight-icon" aria-hidden="true">🎓</span>
+            <span class="highlight-label">BS Computer Science · NIU</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-icon" aria-hidden="true">🧠</span>
+            <span class="highlight-label">Machine Learning &amp; AI (in progress)</span>
+          </div>
+          <div class="highlight-item">
+            <span class="highlight-icon" aria-hidden="true">💻</span>
+            <span class="highlight-label">C · C++ · Python · Linux</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== PROJECTS ===== -->
+  <section id="projects" class="section projects-section">
+    <div class="container">
+      <h2 class="section-title">Projects</h2>
+      <div class="projects-grid">
+
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-name">Clox</h3>
+            <span class="project-tag">C++</span>
+          </div>
+          <p class="project-description">
+            A complete tree-walk interpreter for the Lox language, built from the
+            <em>Crafting Interpreters</em> book. Handles scanning, parsing, AST evaluation,
+            environments, and runtime.
+          </p>
+          <div class="project-links">
+            <a href="https://github.com/cfrancis03/clox" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              Source
+            </a>
+            <!-- PLACEHOLDER: Clox is a CLI tool with no hosted demo. Swap this span for a
+                 real link if one ever exists. -->
+            <span class="project-demo-placeholder">Demo</span>
+          </div>
         </article>
 
-        <article class="card reveal" data-tilt data-reveal-delay="2">
-          <div class="card__glow" aria-hidden="true"></div>
-          <div class="card__top">
-            <span class="card__lang" aria-label="Written in C">C</span>
-            <a class="card__link" href="https://github.com/cfrancis03/Thesh"
-               target="_blank" rel="noopener noreferrer" aria-label="Thesh source on GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
-            </a>
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-name">Thesh</h3>
+            <span class="project-tag">C</span>
           </div>
-          <h3 class="card__title">Thesh</h3>
-          <p class="card__sub">Basic Unix Shell</p>
-          <p class="card__desc">
-            A lightweight Unix shell with command execution, piping, redirection, background
-            processes, and built-ins — built directly on <code>fork</code>/<code>exec</code> and
-            signal handling.
+          <p class="project-description">
+            A lightweight Unix shell with command execution, piping, redirection,
+            background processes, built-ins, fork/exec, and signal handling.
           </p>
-          <ul class="tags">
-            <li class="tag">C</li>
-            <li class="tag">Processes</li>
-            <li class="tag">Pipes &amp; redirection</li>
-            <li class="tag">Signals</li>
-          </ul>
+          <div class="project-links">
+            <a href="https://github.com/cfrancis03/Thesh" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              Source
+            </a>
+            <span class="project-demo-placeholder">Demo</span>
+          </div>
         </article>
 
-        <article class="card reveal" data-tilt data-reveal-delay="3">
-          <div class="card__glow" aria-hidden="true"></div>
-          <div class="card__top">
-            <span class="card__lang" aria-label="Written in C">C</span>
-            <a class="card__link" href="https://github.com/cfrancis03/ceditr"
-               target="_blank" rel="noopener noreferrer" aria-label="Ceditr source on GitHub">
-              <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M7.5 16.5 16.5 7.5M9 7.5h7.5V15"/></svg>
-            </a>
+        <article class="project-card">
+          <div class="project-header">
+            <h3 class="project-name">Ceditr</h3>
+            <span class="project-tag">C</span>
           </div>
-          <h3 class="card__title">Ceditr</h3>
-          <p class="card__sub">Terminal Text Editor</p>
-          <p class="card__desc">
-            A simple terminal text editor built around buffer management, cursor movement,
-            insert/delete, and file I/O — driven by raw terminal mode rather than a UI library.
+          <p class="project-description">
+            A terminal text editor with buffer management, cursor movement,
+            insert/delete operations, file I/O, and raw terminal mode.
           </p>
-          <ul class="tags">
-            <li class="tag">C</li>
-            <li class="tag">Raw terminal I/O</li>
-            <li class="tag">Buffers</li>
-            <li class="tag">File I/O</li>
-          </ul>
+          <div class="project-links">
+            <a href="https://github.com/cfrancis03/ceditr" target="_blank" rel="noopener noreferrer" class="btn btn-small btn-ghost">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="currentColor" aria-hidden="true">
+                <path d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"/>
+              </svg>
+              Source
+            </a>
+            <span class="project-demo-placeholder">Demo</span>
+          </div>
         </article>
 
       </div>
     </div>
   </section>
 
-  <!-- =========================== EDUCATION ============================ -->
-  <section class="section" id="education">
-    <div class="shell">
-      <header class="section__head reveal">
-        <p class="section__num">03 — Education</p>
-        <h2 class="section__title">Academic background</h2>
-      </header>
-
-      <ol class="timeline">
-        <li class="timeline__item reveal" data-reveal-delay="1">
-          <span class="timeline__dot" aria-hidden="true"></span>
-          <p class="timeline__date">Expected Spring 2027</p>
-          <h3 class="timeline__title">BS in Computer Science</h3>
-          <p class="timeline__org">Northern Illinois University · DeKalb, IL</p>
-          <p class="timeline__desc">
-            Coursework and self-directed projects focused on systems programming, interpreters,
-            and efficient software design.
-            <!-- PLACEHOLDER: the résumé lists no GPA, honours, or specific coursework
-                 for NIU. Add them here if you want them shown. -->
-          </p>
-        </li>
-
-        <!-- NOTE: this entry is NOT in the résumé PDF supplied for this build — it was
-             carried over from the previous index.html in this repo. Verify the dates
-             and details, or delete the <li> if it shouldn't be here. -->
-        <li class="timeline__item reveal" data-reveal-delay="2">
-          <span class="timeline__dot" aria-hidden="true"></span>
-          <p class="timeline__date">Summer 2024</p>
-          <h3 class="timeline__title">Associate in Arts, Computer Science</h3>
-          <p class="timeline__org">Sauk Valley Community College</p>
-          <p class="timeline__desc">
-            C++ Programming I &amp; II, Calculus &amp; Analytic Geometry I, General Physics I,
-            Elementary Statistics, and Principles of Economics.
-          </p>
-        </li>
-      </ol>
+  <!-- ===== EDUCATION ===== -->
+  <section id="education" class="section education-section">
+    <div class="container">
+      <h2 class="section-title">Education</h2>
+      <div class="education-timeline">
+        <div class="edu-item">
+          <div class="edu-content">
+            <h3 class="edu-school">Northern Illinois University</h3>
+            <p class="edu-location">DeKalb, IL</p>
+            <p class="edu-degree">BS in Computer Science</p>
+            <p class="edu-date">Expected Graduation: Spring 2027</p>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
 
-  <!-- ============================= SKILLS ============================= -->
-  <section class="section" id="skills">
-    <div class="shell">
-      <header class="section__head reveal">
-        <p class="section__num">04 — Skills</p>
-        <h2 class="section__title">Tools &amp; technologies</h2>
-      </header>
-
-      <div class="skills">
-        <div class="skills__group reveal" data-reveal-delay="1">
-          <h3 class="skills__label">Languages</h3>
-          <ul class="pills">
-            <li class="pill">C</li>
-            <li class="pill">C++</li>
-            <li class="pill">Python 3</li>
+  <!-- ===== SKILLS ===== -->
+  <section id="skills" class="section skills-section">
+    <div class="container">
+      <h2 class="section-title">Skills</h2>
+      <div class="skills-groups">
+        <div class="skill-group">
+          <h3 class="skill-group-title">Languages</h3>
+          <ul class="skill-pills">
+            <li>C</li>
+            <li>C++</li>
+            <li>Python</li>
+            <li>JavaScript / TypeScript</li>
           </ul>
         </div>
-
-        <div class="skills__group reveal" data-reveal-delay="2">
-          <h3 class="skills__label">Systems</h3>
-          <ul class="pills">
-            <li class="pill">Systems programming</li>
-            <li class="pill">Linux system administration</li>
-            <li class="pill">Nix / NixOS</li>
+        <div class="skill-group">
+          <h3 class="skill-group-title">Systems &amp; Tools</h3>
+          <ul class="skill-pills">
+            <li>Linux System Administration</li>
+            <li>Nix / NixOS</li>
+            <li>Version Control (Git)</li>
+            <li>Bash / Shell Scripting</li>
           </ul>
         </div>
-
-        <div class="skills__group reveal" data-reveal-delay="3">
-          <h3 class="skills__label">Engineering &amp; tooling</h3>
-          <ul class="pills">
-            <li class="pill">Software engineering</li>
-            <li class="pill">Version control (Git)</li>
-            <li class="pill">Project management</li>
-          </ul>
-        </div>
-
-        <div class="skills__group reveal" data-reveal-delay="4">
-          <h3 class="skills__label">Domains</h3>
-          <ul class="pills">
-            <li class="pill">Interpreters</li>
-            <li class="pill">Parsing &amp; ASTs</li>
-            <li class="pill">Terminal I/O</li>
-            <li class="pill">Efficient software design</li>
+        <div class="skill-group">
+          <h3 class="skill-group-title">Software Engineering</h3>
+          <ul class="skill-pills">
+            <li>Project Management</li>
+            <li>Software Design</li>
+            <li class="skill-pending">ML/AI (learning)</li>
           </ul>
         </div>
       </div>
     </div>
   </section>
 
-  <!-- ============================ CONTACT ============================= -->
-  <section class="section section--contact" id="contact">
-    <div class="shell">
-      <div class="contact reveal">
-        <p class="section__num">05 — Contact</p>
-        <h2 class="contact__title">Let's build something together.</h2>
-        <p class="contact__lede">
-          I'm looking for entry-level software engineering roles and internships. If you're hiring —
-          or you just want to talk about interpreters and systems programming — my inbox is open.
+  <!-- ===== CONTACT ===== -->
+  <section id="contact" class="section contact-section">
+    <div class="container">
+      <h2 class="section-title">Contact</h2>
+      <div class="contact-content">
+        <p class="contact-text">
+          I'm currently exploring entry-level software engineering opportunities and
+          internships. Feel free to reach out — I'd love to connect.
         </p>
 
-        <div class="contact__actions">
-          <a class="btn btn--primary" href="mailto:cfrancis85111@gmail.com">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><rect x="2.8" y="4.8" width="18.4" height="14.4" rx="2.2"/><path d="m3.4 6.6 8.6 6.2 8.6-6.2"/></svg>
-            cfrancis85111@gmail.com
-          </a>
-          <a class="btn btn--ghost" href="https://github.com/cfrancis03" target="_blank" rel="noopener noreferrer">
-            <svg class="icon" viewBox="0 0 24 24" aria-hidden="true" fill="currentColor" stroke="none"><path d="M12 1.8a10.2 10.2 0 0 0-3.23 19.88c.51.1.7-.22.7-.49l-.01-1.9c-2.84.62-3.44-1.2-3.44-1.2-.47-1.18-1.14-1.5-1.14-1.5-.93-.63.07-.62.07-.62 1.03.07 1.57 1.06 1.57 1.06.91 1.57 2.4 1.12 2.99.86.09-.66.36-1.12.65-1.38-2.27-.26-4.65-1.13-4.65-5.05 0-1.12.4-2.03 1.05-2.74-.1-.26-.45-1.3.1-2.71 0 0 .86-.28 2.82 1.05a9.7 9.7 0 0 1 5.14 0c1.96-1.33 2.82-1.05 2.82-1.05.55 1.41.2 2.45.1 2.71.66.71 1.05 1.62 1.05 2.74 0 3.93-2.39 4.79-4.66 5.04.37.32.7.94.7 1.9l-.01 2.82c0 .27.18.6.7.49A10.2 10.2 0 0 0 12 1.8Z"/></svg>
-            github.com/cfrancis03
-          </a>
-          <!-- PLACEHOLDER: no LinkedIn, X/Twitter, or personal-blog URL appears on the
-               résumé. Add another `.btn.btn--ghost` here if you'd like one listed.
-               The résumé also lists a phone number, deliberately left off this public
-               page — add it here if you want it published. -->
-        </div>
+        <ul class="contact-links">
+          <li>
+            <a href="mailto:cfrancis85111@gmail.com" class="contact-link">
+              <span class="contact-icon" aria-hidden="true">✉</span>
+              cfrancis85111@gmail.com
+            </a>
+          </li>
+          <li>
+            <a href="https://github.com/cfrancis03" target="_blank" rel="noopener noreferrer" class="contact-link">
+              <span class="contact-icon" aria-hidden="true">🐙</span>
+              github.com/cfrancis03
+            </a>
+          </li>
+          <li>
+            <span class="contact-link contact-location">
+              <span class="contact-icon" aria-hidden="true">📍</span>
+              Walnut, IL
+            </span>
+          </li>
+        </ul>
 
-        <p class="contact__meta">Based in Walnut, IL · Open to relocation and remote</p>
-        <!-- NOTE: "open to relocation and remote" is not stated on the résumé.
-             Edit or remove if that isn't accurate. -->
+        <!-- Phone number is deliberately not printed on the page — it lives in the
+             résumé PDF behind this button, so scrapers don't pick it up in plain text. -->
+        <div class="contact-resume">
+          <a href="assets/resume/Colton-Francis-Resume.pdf" target="_blank" rel="noopener noreferrer" class="btn btn-primary">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor"
+                 stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <path d="M12 3v11M8 10.5l4 4 4-4M4.5 17.5v2a1 1 0 0 0 1 1h13a1 1 0 0 0 1-1v-2" />
+            </svg>
+            View Résumé
+          </a>
+          <p class="contact-resume-note">Phone number and full details are on my résumé.</p>
+        </div>
       </div>
     </div>
   </section>
 
 </main>
 
-<footer class="footer">
-  <div class="shell footer__inner">
-    <p>© <span data-year>2026</span> Colton Francis</p>
-    <p>
-      Hand-built with HTML, CSS &amp; TypeScript ·
-      <a href="https://github.com/cfrancis03/cfrancis03.github.io" target="_blank" rel="noopener noreferrer">source</a>
-    </p>
+<!-- ===== FOOTER ===== -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <p class="footer-copy">&copy; <span id="footerYear">2026</span> Colton Francis. Built with <span class="footer-heart" aria-hidden="true">♥</span>.</p>
+    <p class="footer-small">Find me on <a href="https://github.com/cfrancis03" target="_blank" rel="noopener noreferrer">GitHub</a></p>
   </div>
 </footer>
 
