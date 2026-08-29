@@ -5,21 +5,42 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <meta name="color-scheme" content="dark light" />
 
-<title>Colton Francis · Software Engineer</title>
-<meta name="description" content="Colton Francis – Entry-Level Software Engineer, interested in ML/AI." />
+<title>Colton Francis — Software Engineer | C, C++, Python</title>
+<meta name="description" content="Colton Francis — entry-level software engineer and Computer Science student at Northern Illinois University. Systems projects in C, C++, and Python." />
 <meta name="author" content="Colton Francis" />
+<link rel="canonical" href="https://coltonfrancis.dev/" />
 
+<!-- Let Google show full-length snippets and large image previews. -->
+<meta name="robots" content="index, follow, max-snippet:-1, max-image-preview:large, max-video-preview:-1" />
+
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)" />
+
+<!-- Open Graph / Twitter. Absolute URLs are required: scrapers do not resolve
+     relative paths. -->
 <meta property="og:type" content="website" />
-<meta property="og:title" content="Colton Francis · Software Engineer" />
-<meta property="og:description" content="Entry-Level Software Engineer and Computer Science student at Northern Illinois University, interested in ML/AI." />
-<meta property="og:url" content="https://cfrancis03.github.io/" />
-<!-- PLACEHOLDER: no social preview image yet. Add assets/og-image.png (1200x630)
-     and uncomment the tag below so shared links render a card instead of a blank box. -->
-<!-- <meta property="og:image" content="https://cfrancis03.github.io/assets/og-image.png" /> -->
-<meta name="twitter:card" content="summary_large_image" />
+<meta property="og:site_name" content="Colton Francis" />
+<meta property="og:locale" content="en_US" />
+<meta property="og:title" content="Colton Francis — Software Engineer" />
+<meta property="og:description" content="Computer Science student at Northern Illinois University building systems projects in C, C++, and Python — a Lox interpreter, a Unix shell, and a terminal text editor." />
+<meta property="og:url" content="https://coltonfrancis.dev/" />
+<meta property="og:image" content="https://coltonfrancis.dev/assets/og-image.png" />
+<meta property="og:image:width" content="1200" />
+<meta property="og:image:height" content="630" />
+<meta property="og:image:alt" content="Colton Francis — Software Engineer, Computer Science at NIU. Skills: C, C++, Python, Linux." />
 
-<link rel="canonical" href="https://cfrancis03.github.io/" />
-<link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><rect width='100' height='100' rx='22' fill='%230d1117'/><text y='.9em' x='50%25' text-anchor='middle' font-size='54' font-family='sans-serif' font-weight='800' fill='%2358a6ff'>CF</text></svg>" />
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content="Colton Francis — Software Engineer" />
+<meta name="twitter:description" content="Computer Science student at Northern Illinois University building systems projects in C, C++, and Python." />
+<meta name="twitter:image" content="https://coltonfrancis.dev/assets/og-image.png" />
+<meta name="twitter:image:alt" content="Colton Francis — Software Engineer, Computer Science at NIU." />
+
+<!-- Icons. favicon.ico stays at the site root because crawlers and older
+     browsers request /favicon.ico directly regardless of these tags. -->
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<link rel="manifest" href="/site.webmanifest" />
 
 <!-- Applies the saved theme before first paint so there's no flash of the wrong
      colours, and marks that JS is running (the scroll-reveal styles key off `.js`,
@@ -39,8 +60,99 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-<link href="https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap" rel="stylesheet" />
+<!-- Only the five weights the stylesheet actually uses. The previous request
+     pulled the full variable font on both the weight and optical-size axes plus
+     a separate italic file, for several times the bytes. -->
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
 <link rel="stylesheet" href="css/styles.css" />
+
+<!-- Structured data: tells Google who this page is about, which is what drives
+     name-query results and any knowledge panel. Every value here is drawn from
+     the résumé or the page itself — note there is deliberately no telephone
+     property, since the number is kept off the site. -->
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@graph": [
+    {
+      "@type": "WebSite",
+      "@id": "https://coltonfrancis.dev/#website",
+      "url": "https://coltonfrancis.dev/",
+      "name": "Colton Francis",
+      "description": "Portfolio of Colton Francis, entry-level software engineer.",
+      "inLanguage": "en-US",
+      "publisher": { "@id": "https://coltonfrancis.dev/#colton" }
+    },
+    {
+      "@type": "ProfilePage",
+      "@id": "https://coltonfrancis.dev/#profile",
+      "url": "https://coltonfrancis.dev/",
+      "name": "Colton Francis \u2014 Software Engineer",
+      "isPartOf": { "@id": "https://coltonfrancis.dev/#website" },
+      "about": { "@id": "https://coltonfrancis.dev/#colton" },
+      "primaryImageOfPage": "https://coltonfrancis.dev/assets/og-image.png"
+    },
+    {
+      "@type": "Person",
+      "@id": "https://coltonfrancis.dev/#colton",
+      "name": "Colton Francis",
+      "givenName": "Colton",
+      "familyName": "Francis",
+      "jobTitle": "Software Engineer",
+      "description": "Computer Science student at Northern Illinois University and entry-level software engineer focused on systems programming, interpreters, and machine learning.",
+      "url": "https://coltonfrancis.dev/",
+      "image": "https://coltonfrancis.dev/assets/og-image.png",
+      "email": "mailto:cfrancis85111@gmail.com",
+      "sameAs": ["https://github.com/cfrancis03"],
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Walnut",
+        "addressRegion": "IL",
+        "addressCountry": "US"
+      },
+      "alumniOf": {
+        "@type": "CollegeOrUniversity",
+        "name": "Northern Illinois University",
+        "sameAs": "https://www.niu.edu/",
+        "address": {
+          "@type": "PostalAddress",
+          "addressLocality": "DeKalb",
+          "addressRegion": "IL",
+          "addressCountry": "US"
+        }
+      },
+      "knowsAbout": [
+        "C", "C++", "Python", "Systems programming", "Linux system administration",
+        "NixOS", "Git", "Interpreters", "Compilers", "Machine learning"
+      ]
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Clox",
+      "description": "A complete tree-walk interpreter for the Lox language: scanning, parsing, AST evaluation, environments, and runtime.",
+      "programmingLanguage": "C++",
+      "codeRepository": "https://github.com/cfrancis03/clox",
+      "author": { "@id": "https://coltonfrancis.dev/#colton" }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Thesh",
+      "description": "A lightweight Unix shell with command execution, piping, redirection, background processes, built-ins, fork/exec, and signal handling.",
+      "programmingLanguage": "C",
+      "codeRepository": "https://github.com/cfrancis03/Thesh",
+      "author": { "@id": "https://coltonfrancis.dev/#colton" }
+    },
+    {
+      "@type": "SoftwareSourceCode",
+      "name": "Ceditr",
+      "description": "A terminal text editor with buffer management, cursor movement, insert/delete operations, file I/O, and raw terminal mode.",
+      "programmingLanguage": "C",
+      "codeRepository": "https://github.com/cfrancis03/ceditr",
+      "author": { "@id": "https://coltonfrancis.dev/#colton" }
+    }
+  ]
+}
+</script>
 </head>
 <body>
 

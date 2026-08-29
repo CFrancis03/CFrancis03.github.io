@@ -4,7 +4,7 @@ Personal portfolio site for **Colton Francis** — a single-page, statically hos
 built with semantic HTML, hand-written CSS, and TypeScript compiled to vanilla JS.
 No frameworks, no runtime dependencies.
 
-Live at **https://cfrancis03.github.io/**
+Live at **https://coltonfrancis.dev/**
 
 ---
 
@@ -15,10 +15,10 @@ Live at **https://cfrancis03.github.io/**
 | Markup | Semantic HTML5 | Landmarks, real heading order, skip link, ARIA only where needed |
 | Styling | One CSS file, custom properties | Theming is a single `[data-theme]` attribute swap |
 | Behaviour | TypeScript → ES2019 script | Type safety in source, zero-dependency plain JS in the browser |
-| Fonts | Inter (Google Fonts) | Preconnected, `display=swap`, full system fallback stack |
+| Fonts | Inter (Google Fonts) | Preconnected, `display=swap`, only the 5 weights in use |
 | Hosting | GitHub Pages from the repo root | Nothing to build on the server |
 
-Total payload is roughly **37 KB** of HTML + CSS + JS (uncompressed, fonts excluded).
+Total payload is roughly **40 KB** of HTML + CSS + JS (uncompressed, fonts and images excluded).
 
 ## Project structure
 
@@ -32,7 +32,20 @@ Total payload is roughly **37 KB** of HTML + CSS + JS (uncompressed, fonts exclu
 │   └── resume/                # Résumé PDF, linked from the hero and Contact
 ├── tsconfig.json              # strict; compiles src/ → assets/js/
 ├── package.json               # `typescript` is the only devDependency
-└── .nojekyll                  # Serve files verbatim; skip Jekyll processing
+├── .nojekyll                  # Serve files verbatim; skip Jekyll processing
+│
+│   # Domain + SEO
+├── CNAME                      # Custom domain for GitHub Pages — see warning below
+├── favicon.ico                # 16/32/48 bundle; crawlers request this path directly
+├── favicon.svg                # Scalable primary icon
+├── apple-touch-icon.png       # 180x180 iOS home-screen icon
+├── site.webmanifest           # PWA/Android icon + name metadata
+├── robots.txt                 # Allows all, points to the sitemap
+├── sitemap.xml                # Single URL; update <lastmod> on meaningful edits
+├── 404.html                   # Styled, noindex; GitHub Pages serves it automatically
+└── assets/
+    ├── og-image.png           # 1200x630 social preview card
+    └── icons/                 # 192/512 PNGs + maskable variant for the manifest
 ```
 
 ## Build
@@ -72,6 +85,34 @@ This is a user site (`<username>.github.io`), so the default branch **is** the s
 4. Pages redeploys in ~1 minute
 
 There is no CI workflow — pushing the compiled output is the deploy.
+
+### ⚠ Custom domain: set DNS *before* this reaches the live branch
+
+The repo contains a `CNAME` file holding `coltonfrancis.dev`. As soon as that file
+lands on the branch Pages deploys, GitHub starts serving the site on that domain and
+**301-redirects `cfrancis03.github.io` to it**. If DNS isn't pointed yet, the site is
+unreachable at both addresses until it is.
+
+So either configure DNS first, or delete `CNAME` before merging and add it back later.
+
+At your registrar, for the apex domain, add four `A` records (or one `ALIAS`/`ANAME`
+if the registrar supports it) pointing to GitHub Pages:
+
+```
+185.199.108.153
+185.199.109.153
+185.199.110.153
+185.199.111.153
+```
+
+Plus a `CNAME` record for `www` → `cfrancis03.github.io`. Then in **Settings → Pages**
+set the custom domain and, once the check passes, tick **Enforce HTTPS** (certificate
+issuance takes a few minutes).
+
+Everything else is already pointed at the new domain: canonical tag, `og:url`,
+`og:image`, `sitemap.xml`, `robots.txt`, and the JSON-LD `@id`s. If you end up using a
+different domain, grep for `coltonfrancis.dev` and replace it — those are the only
+places it appears.
 
 ## How the pieces work
 
@@ -119,14 +160,46 @@ and `assets/resume/` if you'd rather not publish it at all.
 
 Email, GitHub, and city remain on the page as visible links.
 
+## SEO
+
+What's in place:
+
+- **Title** (51 chars) and **meta description** (148 chars) — both inside Google's
+  truncation limits, name first for branded searches.
+- **Canonical URL** on every page, absolute `og:`/`twitter:` URLs (scrapers don't
+  resolve relative paths), and a real 1200x630 `og:image`.
+- **JSON-LD structured data** — a `@graph` of `WebSite`, `ProfilePage`, `Person`, and
+  one `SoftwareSourceCode` node per project. The `Person` node is what Google reads for
+  name queries: job title, `alumniOf` NIU, locality, `sameAs` GitHub, and `knowsAbout`
+  skills. **There is deliberately no `telephone` property** — the number is kept off the
+  site (see below), and putting it in structured data would undo that.
+- **`robots.txt` + `sitemap.xml`**, and a `noindex` 404 page so error pages can't rank.
+- **Full icon set**: `favicon.ico` (16/32/48), SVG, Apple touch icon, and manifest PNGs.
+- **Faster fonts** — the request now asks for the 5 weights actually used instead of the
+  full variable font on two axes plus a separate italic file.
+
+After the domain is live, submit `https://coltonfrancis.dev/sitemap.xml` in
+[Google Search Console](https://search.google.com/search-console) — indexing a brand-new
+domain otherwise takes considerably longer. Validate the structured data with the
+[Rich Results Test](https://search.google.com/test/rich-results).
+
+Worth doing next, in rough order of payoff:
+
+1. **Self-host the Inter woff2 subset.** Removes two third-party origins from the
+   critical path and improves Largest Contentful Paint, which is a ranking signal.
+2. **Real project content.** Per-project pages with genuine write-ups give Google
+   something to index beyond one page of card blurbs — the single biggest lever on a
+   one-pager.
+3. **Backlinks.** Put the domain in your GitHub profile, repo `About` fields, and
+   LinkedIn. For a new personal domain this outweighs most on-page tweaking.
+
 ## Known gaps
 
 Marked with `PLACEHOLDER:` comments in `index.html`:
 
 - No live-demo URLs — all three projects are CLI tools, so each card shows a greyed-out
   "Demo" label next to the Source link.
-- No social preview image; the `og:image` tag is commented out until one exists.
-- No LinkedIn or blog URL.
+- No LinkedIn or blog URL, so `sameAs` in the structured data lists only GitHub.
 
 ## Accessibility
 

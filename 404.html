@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="color-scheme" content="dark light" />
+<title>Page not found — Colton Francis</title>
+<meta name="description" content="That page doesn't exist. Head back to coltonfrancis.dev." />
+<!-- A 404 must never be indexed, or Google may rank it for real queries. -->
+<meta name="robots" content="noindex, follow" />
+<link rel="icon" href="/favicon.ico" sizes="32x32" />
+<link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+<link rel="apple-touch-icon" href="/apple-touch-icon.png" />
+<meta name="theme-color" content="#0d1117" media="(prefers-color-scheme: dark)" />
+<meta name="theme-color" content="#f6f8fa" media="(prefers-color-scheme: light)" />
+<script>
+  (function () {
+    try {
+      var stored = localStorage.getItem('theme-preference');
+      var theme = (stored === 'light' || stored === 'dark')
+        ? stored
+        : (window.matchMedia('(prefers-color-scheme: light)').matches ? 'light' : 'dark');
+      if (theme === 'light') document.documentElement.setAttribute('data-theme', 'light');
+    } catch (e) {}
+  })();
+</script>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+<!-- Absolute paths: this page is served for any missing URL, at any depth. -->
+<link rel="stylesheet" href="/css/styles.css" />
+<style>
+  .nf { min-height: 82vh; display: grid; place-items: center; text-align: center; }
+  .nf .nf-code { font-size: clamp(4.5rem, 16vw, 8rem); font-weight: 800; line-height: 1;
+             letter-spacing: -4px; color: var(--accent); }
+  .nf h1 { font-size: clamp(1.5rem, 5vw, 2.2rem); margin: 0.75rem 0 0.6rem; }
+  .nf p { color: var(--text-secondary); max-width: 38ch; margin: 0 auto 2rem; }
+</style>
+</head>
+<body>
+<header class="site-nav">
+  <nav class="nav-inner" aria-label="Main navigation">
+    <a href="/" class="nav-logo">Colton Francis</a>
+  </nav>
+</header>
+<main class="nf">
+  <div class="container">
+    <p class="nf-code">404</p>
+    <h1>This page doesn't exist</h1>
+    <p>The link may be out of date, or the address mistyped.</p>
+    <a class="btn btn-primary" href="/">Back to home</a>
+  </div>
+</main>
+</body>
+</html>
