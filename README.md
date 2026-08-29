@@ -15,10 +15,10 @@ Live at **https://cfrancis03.github.io/**
 | Markup | Semantic HTML5 | Landmarks, real heading order, skip link, ARIA only where needed |
 | Styling | One CSS file, custom properties | Theming is a single `[data-theme]` attribute swap |
 | Behaviour | TypeScript → ES2019 script | Type safety in source, zero-dependency plain JS in the browser |
-| Fonts | Space Grotesk + Inter (Google Fonts) | Preconnected, `display=swap`, full system fallback stacks |
+| Fonts | Inter (Google Fonts) | Preconnected, `display=swap`, full system fallback stack |
 | Hosting | GitHub Pages from the repo root | Nothing to build on the server |
 
-Total payload is roughly **50 KB** of HTML + CSS + JS (uncompressed, fonts excluded).
+Total payload is roughly **37 KB** of HTML + CSS + JS (uncompressed, fonts excluded).
 
 ## Project structure
 
@@ -29,7 +29,7 @@ Total payload is roughly **50 KB** of HTML + CSS + JS (uncompressed, fonts exclu
 ├── src/main.ts                # TypeScript source (the thing you edit)
 ├── assets/
 │   ├── js/main.js             # Compiled output — committed, do not edit by hand
-│   └── resume/                # Résumé PDF linked from the hero
+│   └── resume/                # Résumé PDF, linked from the hero and Contact
 ├── tsconfig.json              # strict; compiles src/ → assets/js/
 ├── package.json               # `typescript` is the only devDependency
 └── .nojekyll                  # Serve files verbatim; skip Jekyll processing
@@ -76,66 +76,61 @@ There is no CI workflow — pushing the compiled output is the deploy.
 ## How the pieces work
 
 **Theming.** Every colour is a custom property on `:root`, with the light palette
-redefined under `:root[data-theme="light"]`. An inline script in `<head>` sets
-`data-theme` before first paint (so there's no flash of the wrong colours): it reads
-`localStorage['cf-theme']`, and falls back to `prefers-color-scheme` — which means
-**dark unless the visitor's OS asks for light**. The toggle in the nav writes an
-explicit choice to `localStorage`; until someone clicks it, the page keeps following
-the OS setting live.
+redefined under `[data-theme="light"]`. An inline script in `<head>` sets the attribute
+before first paint (so there's no flash of the wrong colours): it reads
+`localStorage['theme-preference']`, and falls back to `prefers-color-scheme` — which
+means **dark unless the visitor's OS asks for light**. The nav toggle writes an explicit
+choice to `localStorage`; until someone clicks it, the page keeps following the OS
+setting live.
 
-**Scroll reveal.** Elements with `.reveal` fade and rise into place via an
-`IntersectionObserver`, staggered with `data-reveal-delay="1|2|3…"` (each step = 85 ms).
-Add the class and the attribute to any new element and it just works. Content is only
+**Scroll reveal.** Each `<section class="section">` fades and rises into view via an
+`IntersectionObserver`. Sections already on screen at load (the hero) are revealed
+immediately rather than waiting for a threshold they may never cross. Content is only
 hidden when the `js` class is present, so the page is fully readable with JS disabled,
-and everything is shown immediately under `prefers-reduced-motion: reduce`.
+and everything shows at once under `prefers-reduced-motion: reduce`.
 
-**Nav.** Sticky, gains a blurred background past 8 px of scroll, and highlights the
-current section with a second `IntersectionObserver`. Below 46 rem it collapses into a
-hamburger menu that closes on link click, outside click, `Escape`, or resize to desktop.
+**Nav.** Sticky with a blurred backdrop. Below 650 px it collapses into a hamburger menu
+that closes on link click, outside click, `Escape`, or resize back to desktop. The theme
+toggle sits outside the collapsible list so it stays reachable on mobile.
 
-**Motion.** Every hover lift, transition, and animation is disabled under
-`prefers-reduced-motion: reduce`; there's also a `@media print` block.
+**Motion.** Every transition, hover lift, and the bouncing scroll arrow are disabled
+under `prefers-reduced-motion: reduce`; there's also a `@media print` block.
 
 ## Editing content
 
 All copy lives in `index.html` — there's no data file or templating to learn.
 
-- **Projects** — duplicate an `<article class="card">` block. Each needs a
-  `card__lang` badge, a GitHub `card__link`, and a `<ul class="tags">`.
-- **Skills** — add an `<li class="pill">` to any `.skills__group`.
-- **Education** — add an `<li class="timeline__item">`; the connector line and dot are
-  drawn by CSS.
-- **Accent colour** — change `--accent` / `--accent-2` in *both* palette blocks at the
-  top of `css/styles.css`. Everything else (gradients, glows, focus rings) derives
-  from them.
+- **Projects** — duplicate an `<article class="project-card">` block. Each needs a
+  `project-tag`, a description, and a GitHub link.
+- **Skills** — add an `<li>` to any `.skill-pills` list. Add `class="skill-pending"`
+  for a dashed, de-emphasised "still learning" pill.
+- **Education** — add another `<div class="edu-item">`.
+- **Accent colour** — change `--accent` (and `--accent-contrast`, the text colour used
+  on top of it) in *both* palette blocks at the top of `css/styles.css`.
 
-## Content provenance — please review
+## Contact details
 
-Everything on the page was taken from `assets/resume/Colton-Francis-Resume.pdf`,
-**except** the items below. Each is also flagged with an HTML comment at its location
-in `index.html`:
+The phone number is **deliberately not printed anywhere on the page**. It lives in
+`assets/resume/Colton-Francis-Resume.pdf`, reachable through the *Résumé* button in the
+hero and the *View Résumé* button in the Contact section. That keeps it out of reach of
+plain-text scrapers while still being one click away for a real reader — but note the
+PDF is publicly downloadable, so this is obfuscation, not privacy. Delete both buttons
+and `assets/resume/` if you'd rather not publish it at all.
 
-- **Sauk Valley Community College (Associate in Arts)** in the Education timeline —
-  carried over from the previous `index.html` in this repo, not present in the résumé
-  PDF. Verify or delete.
-- **"Open to relocation and remote"** under Contact — not stated on the résumé.
-- **Prose in About / Projects / hero** — rewritten from résumé bullet points for the
-  web. No new facts were introduced, but the wording is not verbatim.
+Email, GitHub, and city remain on the page as visible links.
 
-Known gaps, all marked with `PLACEHOLDER:` comments in `index.html`:
+## Known gaps
 
-- No live-demo URLs (all three projects are CLI tools) — only GitHub links are shown.
-- No LinkedIn, X, or blog URL appears on the résumé, so none is linked.
-- No social preview image; the `og:image` tags are commented out until one exists.
-- No GPA, honours, or NIU coursework listed.
-- The résumé lists a **phone number**, deliberately left out of the public page. The
-  PDF itself is linked from the hero and *does* contain it — delete the "Résumé"
-  button and `assets/resume/` if you'd rather not publish that.
+Marked with `PLACEHOLDER:` comments in `index.html`:
+
+- No live-demo URLs — all three projects are CLI tools, so each card shows a greyed-out
+  "Demo" label next to the Source link.
+- No social preview image; the `og:image` tag is commented out until one exists.
+- No LinkedIn or blog URL.
 
 ## Accessibility
 
-Skip link, visible `:focus-visible` rings, one `<h1>` with an ordered heading
-structure, `aria-expanded`/`aria-controls` on the menu button, `aria-label` +
-`aria-pressed` on the theme toggle, decorative SVGs marked `aria-hidden`, and
-`rel="noopener noreferrer"` on every external link. Both palettes were chosen to keep
-body text above 4.5:1 contrast.
+Skip link, visible `:focus-visible` rings, one `<h1>` with an ordered heading structure,
+`aria-expanded`/`aria-controls` on the menu button, `aria-label` + `aria-pressed` on the
+theme toggle, decorative icons and SVGs marked `aria-hidden`, and
+`rel="noopener noreferrer"` on every external link.
