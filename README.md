@@ -28,8 +28,7 @@ Total payload is roughly **40 KB** of HTML + CSS + JS (uncompressed, fonts and i
 ├── css/styles.css             # All styling + both theme palettes
 ├── src/main.ts                # TypeScript source (the thing you edit)
 ├── assets/
-│   ├── js/main.js             # Compiled output — committed, do not edit by hand
-│   └── resume/                # Résumé PDF, linked from the hero and Contact
+│   └── js/main.js             # Compiled output — committed, do not edit by hand
 ├── tsconfig.json              # strict; compiles src/ → assets/js/
 ├── package.json               # `typescript` is the only devDependency
 ├── .nojekyll                  # Serve files verbatim; skip Jekyll processing
@@ -151,14 +150,19 @@ All copy lives in `index.html` — there's no data file or templating to learn.
 
 ## Contact details
 
-The phone number is **deliberately not printed anywhere on the page**. It lives in
-`assets/resume/Colton-Francis-Resume.pdf`, reachable through the *Résumé* button in the
-hero and the *View Résumé* button in the Contact section. That keeps it out of reach of
-plain-text scrapers while still being one click away for a real reader — but note the
-PDF is publicly downloadable, so this is obfuscation, not privacy. Delete both buttons
-and `assets/resume/` if you'd rather not publish it at all.
+The site publishes **email and GitHub only**. Deliberately absent, and worth keeping
+absent if you edit this page:
 
-Email, GitHub, and city remain on the page as visible links.
+- **Phone number** — nowhere on the site, and no `telephone` property in the JSON-LD.
+- **Home city / postal address** — no location line in the Contact section, and no
+  `address` property on the `Person` node in the structured data. The "DeKalb, IL" in
+  the Education section is Northern Illinois University's own campus location, not a
+  personal address.
+- **Résumé PDF** — not hosted. Send it directly to people who ask instead, so it isn't
+  crawlable or scrapable.
+
+If you re-add a résumé link later, remember the PDF itself carries a phone number and a
+home address, and anything linked from a public page can be downloaded and indexed.
 
 ## SEO
 
@@ -200,6 +204,7 @@ Marked with `PLACEHOLDER:` comments in `index.html`:
 - No live-demo URLs — all three projects are CLI tools, so each card shows a greyed-out
   "Demo" label next to the Source link.
 - No LinkedIn or blog URL, so `sameAs` in the structured data lists only GitHub.
+- No résumé download — see **Contact details** below for why.
 
 ## Accessibility
 
